@@ -2,25 +2,64 @@ package models;
 
 public class Carro {
     private int id;
+    private String marca;
     private String modelo;
-    private String ;
-    private String telefone;
+    private String cor;
+    private String ano;
+    private String motor;
+    private String cambio;
 
     // Construtores
-    public Contato() {
+    public Carro() {
     }
 
-    public Contato(String nome, String email, String telefone) {
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
+    public Carro(String marca, String modelo, String cor) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
     }
 
-    public Contato(int id, String nome, String email, String telefone) {
+    public Carro(int id, String marca, String modelo, String cor) {
         this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
+    }
+
+    public Carro(int id, String marca, String modelo, String cor, String ano) {
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.ano = ano;
+    }
+
+    public Carro(int id, String marca, String modelo, String cor, String ano, String motor) {
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.ano = ano;
+        this.motor = motor;
+    }
+
+    public Carro(int id, String marca, String modelo, String cor, String ano, String motor, String cambio) {
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.ano = ano;
+        this.motor = motor;
+        this.cambio = cambio;
+    }
+
+    public Carro(String marca, String modelo, String cor, String ano, String motor, String cambio) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.ano = ano;
+        this.motor = motor;
+        this.cambio = cambio;
     }
 
     // Getters e Setters
@@ -31,34 +70,58 @@ public class Carro {
 
     // ID somente leitura, sem setter
 
-    public String getNome() {
-        return nome;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public String getEmail() {
-        return email;
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getCor() {
+        return cor;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public String getMotor() {
+        return motor;
+    }
+
+    public void setMotor(String motor) {
+        this.motor = motor;
+    }
+
+    public String getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(String cambio) {
+        this.cambio = cambio;
     }
 
     // toString
 
     @Override
     public String toString() {
-        return "Contato [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + "]";
+    return "Contato [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", cor=" + cor + ", ano=" + ano + ", motor=" + motor + ", câmbio=" + cambio + "]";
     }
 }

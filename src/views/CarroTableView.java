@@ -1,24 +1,24 @@
 package views;
 
-import models.Contato;
+import models.Carro;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class ContatoTableView extends JFrame {
+public class CarroTableView extends JFrame {
     private JTable table;
     private DefaultTableModel tableModel;
 
-    public ContatoTableView() {
-        super("Gerenciamento de Contatos");
+    public CarroTableView() {
+        super("Gerenciamento de Carros");
         initializeComponents();
     }
 
     private void initializeComponents() {
         // Define column names
-        String[] columnNames = {"ID", "Nome", "Email", "Telefone"};
+        String[] columnNames = {"ID", "Marca", "Modelo", "Cor", "Ano", "Motor", "Câmbio" };
 
         // Initialize table model and table
         tableModel = new DefaultTableModel(columnNames, 0);
@@ -38,23 +38,26 @@ public class ContatoTableView extends JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    public void atualizarTabela(List<Contato> contatos) {
+    public void atualizarTabela(List<Carro> carros) {
         // Clear the table
         tableModel.setRowCount(0);
 
         // Populate the table with data
-        for (Contato contato : contatos) {
+        for (Carro carro : carros) {
             Object[] row = {
-                contato.getId(),
-                contato.getNome(),
-                contato.getEmail(),
-                contato.getTelefone()
+                carro.getID(),
+                carro.getMarca(),
+                carro.getModelo(),
+                carro.getCor(),
+                carro.getAno(),
+                carro.getMotor(),
+                carro.getCambio()
             };
             tableModel.addRow(row);
         }
     }
 
-    public int getSelectedContatoId() {
+    public int getSelectedCarroId() {
         int selectedRow = table.getSelectedRow();
         if (selectedRow != -1) {
             return (int) tableModel.getValueAt(selectedRow, 0); // Get the ID from the first column
