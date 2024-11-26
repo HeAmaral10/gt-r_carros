@@ -1,27 +1,27 @@
 package controllers;
 
-import models.Contato;
-import repository.ContatoRepository;
-import views.ContatoForm;
-import views.ContatoTableView;
+import models.Carro;
+import repository.CarroRepository;
+import views.CarroForm;
+import views.CarroTableView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class ContatoController {
-    private ContatoRepository repository;
-    private ContatoTableView tableView;
+public class CarroController {
+    private CarroRepository repository;
+    private CarroTableView tableView;
 
-    public ContatoController() {
-        repository = new ContatoRepository();
-        tableView = new ContatoTableView();
+    public CarroController() {
+        repository = new CarroRepository();
+        tableView = new CarroTableView();
         inicializar();
     }
 
     private void inicializar() {
-        // Atualizar a tabela com os contatos existentes
+        // Atualizar a tabela com os carros existentes
         atualizarTabela();
 
         // Criar a barra de ferramentas (toolbar) com botões
@@ -39,21 +39,21 @@ public class ContatoController {
         adicionarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adicionarContato();
+                adicionarCarro();
             }
         });
 
         editarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                editarContato();
+                editarCarro();
             }
         });
 
         deletarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deletarContato();
+                deletarCarro();
             }
         });
 
@@ -61,66 +61,69 @@ public class ContatoController {
     }
 
     private void atualizarTabela() {
-        List<Contato> contatos = repository.obterTodosContatos();
-        tableView.atualizarTabela(contatos);
+        List<Carro> carros = repository.obterTodosCarros();
+        tableView.atualizarTabela(carros);
     }
 
-    private void adicionarContato() {
-        ContatoForm form = new ContatoForm(tableView, "Adicionar Contato");
+    private void adicionarCarro() {
+        CarroForm form = new CarroForm(tableView, "Adicionar Carro");
         form.setVisible(true);
-        Contato novoContato = form.getContato();
-        if (novoContato != null) {
-            repository.adicionarContato(novoContato);
+        Carro novoCarro = form.getCarro();
+        if (novoCarro != null) {
+            repository.adicionarCarro(novoCarro);
             atualizarTabela();
         }
     }
 
-    private void editarContato() {
-        int selectedId = tableView.getSelectedContatoId();
+    private void editarCarro() {
+        int selectedId = tableView.getSelectedCarroId();
         if (selectedId != -1) {
-            Contato contato = repository.obterContatoPorId(selectedId);
-            if (contato != null) {
-                ContatoForm form = new ContatoForm(tableView, "Editar Contato", contato);
+            Carro carro = repository.obterCarroPorId(selectedId);
+            if (carro != null) {
+                CarroForm form = new CarroForm(tableView, "Editar Carro", carro);
                 form.setVisible(true);
-                Contato contatoAtualizado = form.getContato();
-                if (contatoAtualizado != null) {
-                    contatoAtualizado = new Contato(
+                Carro carroAtualizado = form.getCarro();
+                if (carroAtualizado != null) {
+                    carroAtualizado = new Carro(
                         selectedId,
-                        contatoAtualizado.getNome(),
-                        contatoAtualizado.getEmail(),
-                        contatoAtualizado.getTelefone()
+                        carroAtualizado.getMarca(),
+                        carroAtualizado.getModelo(),
+                        carroAtualizado.getAno(),
+                        carroAtualizado.getAno(),
+                        carroAtualizado.getMotor(),
+                        carroAtualizado.getCambio()
                     );
-                    repository.atualizarContato(contatoAtualizado);
+                    repository.atualizarCarro(carroAtualizado);
                     atualizarTabela();
                 }
             } else {
                 JOptionPane.showMessageDialog(tableView,
-                        "Contato não encontrado.",
+                        "Carro não encontrado.",
                         "Erro", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(tableView,
-                    "Selecione um contato para editar.",
+                    "Selecione um carro para editar.",
                     "Aviso", JOptionPane.WARNING_MESSAGE);
         }
     }
 
-    private void deletarContato() {
-        int selectedId = tableView.getSelectedContatoId();
+    private void deletarCarro() {
+        int selectedId = tableView.getSelectedCarroId();
         if (selectedId != -1) {
             int confirm = JOptionPane.showConfirmDialog(
                     tableView,
-                    "Tem certeza que deseja deletar este contato?",
+                    "Tem certeza que deseja deletar este carro?",
                     "Confirmar Deleção",
                     JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_NO_OPTION) {
-                repository.deletarContato(selectedId);
+                repository.deletarCarro(selectedId);
                 atualizarTabela();
             }
         } else {
             JOptionPane.showMessageDialog(
                     tableView,
-                    "Selecione um contato para deletar.",
+                    "Selecione um carro para deletar.",
                     "Aviso",
                     JOptionPane.WARNING_MESSAGE);
         }

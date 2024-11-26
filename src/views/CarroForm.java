@@ -1,30 +1,34 @@
 package views;
 
-import models.Contato;
+import models.Carro;
 
+import javax.print.DocFlavor.STRING;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ContatoForm extends JDialog {
-    private JTextField nomeField;
-    private JTextField emailField;
-    private JTextField telefoneField;
+public class CarroForm extends JDialog {
+    private JTextField marcaField;
+    private JTextField modeloField;
+    private JTextField corField;
+    private JTextField anoField;
+    private JTextField motorField;
+    private JTextField cambioField;
     private JButton salvarButton;
     private JButton cancelarButton;
 
-    private Contato contato;
+    private Carro carro;
     private boolean isEditMode;
 
-    public ContatoForm(Frame parent, String title) {
+    public CarroForm(Frame parent, String title) {
         super(parent, title, true);
         this.isEditMode = false;
         initializeComponents();
     }
 
-    public ContatoForm(Frame parent, String title, Contato contato) {
+    public CarroForm(Frame parent, String title, Carro carro) {
         super(parent, title, true);
-        this.contato = contato;
+        this.carro = carro;
         this.isEditMode = true;
         initializeComponents();
         preencherCampos();
@@ -32,20 +36,29 @@ public class ContatoForm extends JDialog {
 
     private void initializeComponents() {
         // Initialize fields and buttons
-        nomeField = new JTextField(20);
-        emailField = new JTextField(20);
-        telefoneField = new JTextField(20);
+        marcaField = new JTextField(20);
+        modeloField = new JTextField(20);
+        corField = new JTextField(20);
+        anoField = new JTextField(20);
+        motorField = new JTextField(20);
+        cambioField = new JTextField(20);
         salvarButton = new JButton("Salvar");
         cancelarButton = new JButton("Cancelar");
 
         // Create panel and layout
-        JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
-        panel.add(new JLabel("Nome:"));
-        panel.add(nomeField);
-        panel.add(new JLabel("Email:"));
-        panel.add(emailField);
-        panel.add(new JLabel("Telefone:"));
-        panel.add(telefoneField);
+        JPanel panel = new JPanel(new GridLayout(8, 2, 10, 10));
+        panel.add(new JLabel("Marca:"));
+        panel.add(marcaField);
+        panel.add(new JLabel("Modelo:"));
+        panel.add(modeloField);
+        panel.add(new JLabel("Cor:"));
+        panel.add(corField);
+        panel.add(new JLabel("Ano:"));
+        panel.add(anoField);
+        panel.add(new JLabel("Motor:"));
+        panel.add(motorField);
+        panel.add(new JLabel("Câmbio:"));
+        panel.add(cambioField);
         panel.add(salvarButton);
         panel.add(cancelarButton);
 
@@ -56,9 +69,9 @@ public class ContatoForm extends JDialog {
         salvarButton.addActionListener(e -> {
             if (validarCampos()) {
                 if (isEditMode) {
-                    atualizarContato();
+                    atualizarCarro();
                 } else {
-                    adicionarContato();
+                    adicionarCarro();
                 }
                 dispose();
             }
@@ -74,18 +87,25 @@ public class ContatoForm extends JDialog {
     }
 
     private void preencherCampos() {
-        if (contato != null) {
-            nomeField.setText(contato.getNome());
-            emailField.setText(contato.getEmail());
-            telefoneField.setText(contato.getTelefone());
+        if (carro != null) {
+            marcaField.setText(carro.getMarca());
+            modeloField.setText(carro.getModelo());
+            corField.setText(carro.getCor());
+            anoField.setText(carro.getAno());
+            motorField.setText(carro.getMotor());
+            cambioField.setText(carro.getCambio());
         }
     }
 
     private boolean validarCampos() {
-        if (nomeField.getText().trim().isEmpty() || emailField.getText().trim().isEmpty()) {
+        if (marcaField.getText().trim().isEmpty() || modeloField.getText().trim().isEmpty() || corField.getText().trim().isEmpty()
+            || anoField.getText().trim().isEmpty() || anoField.getText().trim().isEmpty() || motorField.getText().trim().isEmpty()
+            || cambioField.getText().trim().isEmpty()
+            ) 
+            {
             JOptionPane.showMessageDialog(
                 this,
-                "Nome e Email são obrigatórios.",
+                "Marca, Modelo, Cor, Ano, Motor, Câmbio são obrigatórios",
                 "Erro",
                 JOptionPane.ERROR_MESSAGE
             );
@@ -94,23 +114,29 @@ public class ContatoForm extends JDialog {
         return true;
     }
 
-    private void adicionarContato() {
-        contato = new Contato(
-            nomeField.getText().trim(),
-            emailField.getText().trim(),
-            telefoneField.getText().trim()
+    private void adicionarCarro() {
+        carro = new Carro(
+            marcaField.getText().trim(),
+            modeloField.getText().trim(),
+            corField.getText().trim(),
+            anoField.getText().trim(),
+            motorField.getText().trim(),
+            cambioField.getText().trim()
         );
     }
 
-    private void atualizarContato() {
-        if (contato != null) {
-            contato.setNome(nomeField.getText().trim());
-            contato.setEmail(emailField.getText().trim());
-            contato.setTelefone(telefoneField.getText().trim());
+    private void atualizarCarro() {
+        if (carro != null) {
+            carro.setMarca(marcaField.getText().trim());
+            carro.setModelo(modeloField.getText().trim());
+            carro.setCor(corField.getText().trim());
+            carro.setAno(anoField.getText().trim());
+            carro.setMotor(motorField.getText().trim());
+            carro.setCambio(cambioField.getText().trim());
         }
     }
 
-    public Contato getContato() {
-        return contato;
+    public Carro getCarro() {
+        return carro;
     }
 }
