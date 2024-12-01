@@ -23,7 +23,6 @@ public class CarroRepository {
             stmt.setString(5, carro.getMotor());
             stmt.setString(6, carro.getCambio());
 
-
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {
                 System.out.println("Carro adicionado com sucesso!");
@@ -56,7 +55,7 @@ public class CarroRepository {
                 carros.add(carro);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao obter contatos.");
+            System.out.println("Erro ao obter todos os carros.");
             e.printStackTrace();
         }
 
@@ -86,7 +85,7 @@ public class CarroRepository {
                 );
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao obter contato por ID.");
+            System.out.println("Erro ao obter carro por ID.");
             e.printStackTrace();
         }
 
