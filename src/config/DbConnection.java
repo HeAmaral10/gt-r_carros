@@ -19,19 +19,19 @@ public class DbConnection {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
             } catch (Exception e) {
-                throw new RuntimeException("Erro ao conectar ao banco de dados", e);
+                System.out.println("Driver do MySQL não encontrado.");
+                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
         return connection;
     }
 
-    public static void disconnect() {
-        if (connection != null) {
+    public static void disconnect(Connection connection) {
             try {
                 connection.close();
             } catch (SQLException e) {
-                throw new RuntimeException("Erro ao desconectar do banco de dados", e);
+                throw new RuntimeException("Error disconnection the database", e);
             }
         }
-    }
 }
