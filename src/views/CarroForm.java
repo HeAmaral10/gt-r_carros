@@ -120,6 +120,7 @@ public class CarroForm extends JDialog {
             anoField.getText().trim(),
             motorField.getText().trim(),
             cambioField.getText().trim()
+            //String.valueOf(cambioComboBox.getSelectedItem())
         );
     }
 
