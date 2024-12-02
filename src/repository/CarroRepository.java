@@ -94,7 +94,8 @@ public class CarroRepository {
 
     // Atualizar um contato
     public void atualizarCarro(Carro carro) {
-        String sql = "UPDATE carros SET marca = ?, modelo = ?, cor = ?, ano = ?, motor = ?, cambio = ? WHERE id = ?";
+        String sql = 
+            "UPDATE carros SET marca = ?, modelo = ?, cor = ?, ano = ?, motor = ?, cambio = ? WHERE id = ?";
 
         try (Connection conn = DbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -105,6 +106,7 @@ public class CarroRepository {
             stmt.setString(4, carro.getAno());
             stmt.setString(5, carro.getMotor());
             stmt.setString(6, carro.getCambio());
+            stmt.setInt(7, carro.getID());
             
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {
