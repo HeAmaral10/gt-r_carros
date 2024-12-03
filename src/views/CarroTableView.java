@@ -10,6 +10,8 @@ import java.util.List;
 public class CarroTableView extends JFrame {
     private JTable table;
     private DefaultTableModel tableModel;
+    // private ImageIcon imageIcon;
+    // private JLabel imageLabel;
 
     public CarroTableView() {
         super("Gerenciamento de Carros");
@@ -17,6 +19,10 @@ public class CarroTableView extends JFrame {
     }
 
     private void initializeComponents() {
+
+        // imageIcon = new ImageIcon(getClass().getResource("gt-r_image.png"));
+        // imageLabel = new JLabel(imageIcon);
+
         // Define column names
         String[] columnNames = {"ID", "Marca", "Modelo", "Cor", "Ano", "Motor", "Câmbio" };
 
@@ -30,6 +36,7 @@ public class CarroTableView extends JFrame {
 
         // Set up the layout
         this.setLayout(new BorderLayout());
+        // this.add(imageLabel, BorderLayout.NORTH);
         this.add(scrollPane, BorderLayout.CENTER);
 
         // Configure frame properties

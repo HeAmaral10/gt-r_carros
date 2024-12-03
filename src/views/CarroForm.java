@@ -14,6 +14,7 @@ public class CarroForm extends JDialog {
     private JTextField cambioField;
     private JButton salvarButton;
     private JButton cancelarButton;
+    private JComboBox cambioComboBox;
 
     private Carro carro;
     private boolean isEditMode;
@@ -40,6 +41,9 @@ public class CarroForm extends JDialog {
         anoField = new JTextField(20);
         motorField = new JTextField(20);
         cambioField = new JTextField(20);
+        // cambioComboBox = new JComboBox<>();
+        // cambioComboBox.addItem("Manual");
+        // cambioComboBox.addItem("Automático");
         salvarButton = new JButton("Salvar");
         cancelarButton = new JButton("Cancelar");
 
@@ -57,6 +61,7 @@ public class CarroForm extends JDialog {
         panel.add(motorField);
         panel.add(new JLabel("Câmbio:"));
         panel.add(cambioField);
+        //panel.add(cambioComboBox);
         panel.add(salvarButton);
         panel.add(cancelarButton);
 
@@ -92,6 +97,7 @@ public class CarroForm extends JDialog {
             anoField.setText(carro.getAno());
             motorField.setText(carro.getMotor());
             cambioField.setText(carro.getCambio());
+            //cambioComboBox.(String.valueOf(cambioComboBox.getSelectedItem()).(carro.getCambio()));
         }
     }
 
@@ -103,7 +109,7 @@ public class CarroForm extends JDialog {
             {
             JOptionPane.showMessageDialog(
                 this,
-                "Marca, Modelo, Cor, Ano, Motor, Câmbio são obrigatórios",
+                "Marca, Modelo, Cor, Ano, Motor e Câmbio são obrigatórios",
                 "Erro",
                 JOptionPane.ERROR_MESSAGE
             );
@@ -132,6 +138,7 @@ public class CarroForm extends JDialog {
             carro.setAno(anoField.getText().trim());
             carro.setMotor(motorField.getText().trim());
             carro.setCambio(cambioField.getText().trim());
+            //carro.setCambio(String.valueOf(cambioComboBox.getSelectedItem()));
         }
     }
 

@@ -13,6 +13,8 @@ import java.util.List;
 public class CarroController {
     private CarroRepository repository;
     private CarroTableView tableView;
+    // private ImageIcon imageIcon;
+    // private JLabel imageLabel;
 
     public CarroController() {
         repository = new CarroRepository();
@@ -24,6 +26,8 @@ public class CarroController {
         // Atualizar a tabela com os carros existentes
         atualizarTabela();
 
+        // imageIcon = new ImageIcon(getClass().getResource("gt-r_image.png"));
+        // imageLabel = new JLabel(imageIcon);
         // Criar a barra de ferramentas (toolbar) com botões
         JToolBar toolBar = new JToolBar();
         JButton adicionarButton = new JButton("Adicionar");
@@ -33,6 +37,7 @@ public class CarroController {
         toolBar.add(editarButton);
         toolBar.add(deletarButton);
 
+        // tableView.add(imageLabel, java.awt.BorderLayout.NORTH);
         tableView.add(toolBar, java.awt.BorderLayout.NORTH);
 
         // Ações dos botões
