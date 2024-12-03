@@ -1,11 +1,15 @@
-package views;
+package views; // Pacote para ser utilizada em outros arquivos no projeto
 
+// Importação do pacote
 import models.Carro;
 
+// Importação das bibliotecas
 import javax.swing.*;
 import java.awt.*;
 
+// Classe principal
 public class CarroForm extends JDialog {
+    // Criação dos objetos
     private JTextField marcaField;
     private JTextField modeloField;
     private JTextField corField;
@@ -18,12 +22,14 @@ public class CarroForm extends JDialog {
     private Carro carro;
     private boolean isEditMode;
 
+    // Método construtor para iniciar o formulário
     public CarroForm(Frame parent, String title) {
         super(parent, title, true);
         this.isEditMode = false;
         initializeComponents();
     }
-
+    
+    // Método construtor para iniciar o formulário e preencher os campos automático
     public CarroForm(Frame parent, String title, Carro carro) {
         super(parent, title, true);
         this.carro = carro;
@@ -33,7 +39,7 @@ public class CarroForm extends JDialog {
     }
 
     private void initializeComponents() {
-        // Initialize fields and buttons
+        // Inicia os TextField, ComboBox e os botões
         marcaField = new JTextField(20);
         modeloField = new JTextField(20);
         corField = new JTextField(20);
@@ -45,7 +51,7 @@ public class CarroForm extends JDialog {
         salvarButton = new JButton("Salvar");
         cancelarButton = new JButton("Cancelar");
 
-        // Create panel and layout
+        // Cria o panel e define o layout
         JPanel panel = new JPanel(new GridLayout(8, 2, 10, 10));
         panel.add(new JLabel("Marca:"));
         panel.add(marcaField);
@@ -62,10 +68,10 @@ public class CarroForm extends JDialog {
         panel.add(salvarButton);
         panel.add(cancelarButton);
 
-        // Add margins to the panel
+        // Adiciona margens no panel
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Action listener for save button
+        // Ação do botão Salvar
         salvarButton.addActionListener(e -> {
             if (validarCampos()) {
                 if (isEditMode) {
@@ -77,15 +83,16 @@ public class CarroForm extends JDialog {
             }
         });
 
-        // Action listener for cancel button
+        // Ação do botão Cancelar
         cancelarButton.addActionListener(e -> dispose());
 
-        // Add panel to the dialog
+        // Adiciona o painel na caixa de diálogo
         this.add(panel);
         this.pack();
         this.setLocationRelativeTo(getParent());
     }
 
+    // Função para preencher os campos automaticamente
     private void preencherCampos() {
         if (carro != null) {
             marcaField.setText(carro.getMarca());
@@ -97,6 +104,7 @@ public class CarroForm extends JDialog {
         }
     }
 
+    // Função para conferir se todos os campos estão preenchidos
     private boolean validarCampos() {
         if (marcaField.getText().trim().isEmpty() || modeloField.getText().trim().isEmpty() || corField.getText().trim().isEmpty()
             || anoField.getText().trim().isEmpty() ||motorField.getText().trim().isEmpty()
@@ -113,6 +121,7 @@ public class CarroForm extends JDialog {
         return true;
     }
 
+    // Função para adicionar carro
     private void adicionarCarro() {
         carro = new Carro(
             marcaField.getText().trim(),
@@ -124,6 +133,7 @@ public class CarroForm extends JDialog {
         );
     }
 
+    // Função para atualizar carro
     private void atualizarCarro() {
         if (carro != null) {
             carro.setMarca(marcaField.getText().trim());
@@ -135,6 +145,7 @@ public class CarroForm extends JDialog {
         }
     }
 
+    // Serve para pegar as informações de um carro
     public Carro getCarro() {
         return carro;
     }

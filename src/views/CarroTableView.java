@@ -1,55 +1,62 @@
-package views;
+package views; // Pacote para ser utilizada em outros arquivos no projeto
 
+// Importação do pacote
 import models.Carro;
 
+// Importação das bibliotecas
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
+// Classe principal
 public class CarroTableView extends JFrame {
+    // Criação dos objetos
     private JTable table;
     private DefaultTableModel tableModel;
     // private ImageIcon imageIcon;
     // private JLabel imageLabel;
 
+    // Método construtor para iniciar a visualização da tabela
     public CarroTableView() {
         super("Gerenciamento de Carros");
         initializeComponents();
     }
 
+    // Função para iniciar os componentes
     private void initializeComponents() {
 
         // imageIcon = new ImageIcon(getClass().getResource("gt-r_image.png"));
         // imageLabel = new JLabel(imageIcon);
 
-        // Define column names
+        // Define os nomes das colunas
         String[] columnNames = {"ID", "Marca", "Modelo", "Cor", "Ano", "Motor", "Câmbio" };
 
-        // Initialize table model and table
+        // Inicia o modelo da tabela e a tabela
         tableModel = new DefaultTableModel(columnNames, 0);
         table = new JTable(tableModel);
 
-        // Add the table to a scroll pane
+        // Adiciona a tabela no scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Set up the layout
+        // Define o layout
         this.setLayout(new BorderLayout());
         // this.add(imageLabel, BorderLayout.NORTH);
         this.add(scrollPane, BorderLayout.CENTER);
 
-        // Configure frame properties
+        // Configura as propriedades da janela
         this.setSize(600, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
     }
 
+    // Função para atualizar a tabela
     public void atualizarTabela(List<Carro> carros) {
-        // Clear the table
+        // Limpa a tabela
         tableModel.setRowCount(0);
 
-        // Populate the table with data
+        // Preenche a tabela
         for (Carro carro : carros) {
             Object[] row = {
                 carro.getID(),
@@ -67,8 +74,8 @@ public class CarroTableView extends JFrame {
     public int getSelectedCarroId() {
         int selectedRow = table.getSelectedRow();
         if (selectedRow != -1) {
-            return (int) tableModel.getValueAt(selectedRow, 0); // Get the ID from the first column
+            return (int) tableModel.getValueAt(selectedRow, 0); // Pega o ID da primeira coluna
         }
-        return -1; // Return -1 if no row is selected
+        return -1; // Returna -1 se nenhuma linha for selecionada
     }
 }

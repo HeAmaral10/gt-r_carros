@@ -1,33 +1,40 @@
-package controllers;
+package controllers; // Pacote para ser utilizada em outros arquivos no projeto
 
+// Importação dos pacotes
 import models.Carro;
 import repository.CarroRepository;
 import views.CarroForm;
 import views.CarroTableView;
 
+// Importação das bibliotecas para criação da interface gráfica, ação dos botões e listas
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+// Classe principal
 public class CarroController {
+    // Criação dos objetos para utilização das funções em repository e para criação da tabela
     private CarroRepository repository;
     private CarroTableView tableView;
     // private ImageIcon imageIcon;
     // private JLabel imageLabel;
 
+    // Método construtor para iniciar o controller    
     public CarroController() {
         repository = new CarroRepository();
         tableView = new CarroTableView();
         inicializar();
     }
 
+    // Função para iniciar a tabela, toolBar e os botões
     private void inicializar() {
         // Atualizar a tabela com os carros existentes
         atualizarTabela();
 
         // imageIcon = new ImageIcon(getClass().getResource("gt-r_image.png"));
         // imageLabel = new JLabel(imageIcon);
+        
         // Criar a barra de ferramentas (toolbar) com botões
         JToolBar toolBar = new JToolBar();
         JButton adicionarButton = new JButton("Adicionar");
@@ -65,11 +72,13 @@ public class CarroController {
         tableView.setVisible(true);
     }
 
+    // Função para atualizar a tabela
     private void atualizarTabela() {
         List<Carro> carros = repository.obterTodosCarros();
         tableView.atualizarTabela(carros);
     }
 
+    // Função para adicionar carro
     private void adicionarCarro() {
         CarroForm form = new CarroForm(tableView, "Adicionar Carro");
         form.setVisible(true);
@@ -80,6 +89,7 @@ public class CarroController {
         }
     }
 
+    // Função para editar carro
     private void editarCarro() {
         int selectedId = tableView.getSelectedCarroId();
         if (selectedId != -1) {
@@ -113,6 +123,7 @@ public class CarroController {
         }
     }
 
+    // Função para deletar carro
     private void deletarCarro() {
         int selectedId = tableView.getSelectedCarroId();
         if (selectedId != -1) {

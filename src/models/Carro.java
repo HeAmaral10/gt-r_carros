@@ -1,6 +1,8 @@
-package models;
+package models; // Pacote para ser utilizada em outros arquivos no projeto
 
+// Classe principal
 public class Carro {
+    // Criação das variáveis
     private int id;
     private String marca;
     private String modelo;
@@ -119,7 +121,6 @@ public class Carro {
     }
 
     // toString
-
     @Override
     public String toString() {
     return "Contato [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", cor=" + cor + ", ano=" + ano + ", motor=" + motor + ", câmbio=" + cambio + "]";
