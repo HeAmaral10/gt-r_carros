@@ -11,10 +11,9 @@ public class CarroForm extends JDialog {
     private JTextField corField;
     private JTextField anoField;
     private JTextField motorField;
-    private JTextField cambioField;
     private JButton salvarButton;
     private JButton cancelarButton;
-    private JComboBox cambioComboBox;
+    private JComboBox<String> cambioComboBox;
 
     private Carro carro;
     private boolean isEditMode;
@@ -40,10 +39,9 @@ public class CarroForm extends JDialog {
         corField = new JTextField(20);
         anoField = new JTextField(20);
         motorField = new JTextField(20);
-        cambioField = new JTextField(20);
-        // cambioComboBox = new JComboBox<>();
-        // cambioComboBox.addItem("Manual");
-        // cambioComboBox.addItem("Automático");
+        cambioComboBox = new JComboBox<>();
+        cambioComboBox.addItem("Manual");
+        cambioComboBox.addItem("Automático");
         salvarButton = new JButton("Salvar");
         cancelarButton = new JButton("Cancelar");
 
@@ -60,8 +58,7 @@ public class CarroForm extends JDialog {
         panel.add(new JLabel("Motor:"));
         panel.add(motorField);
         panel.add(new JLabel("Câmbio:"));
-        panel.add(cambioField);
-        //panel.add(cambioComboBox);
+        panel.add(cambioComboBox);
         panel.add(salvarButton);
         panel.add(cancelarButton);
 
@@ -96,15 +93,13 @@ public class CarroForm extends JDialog {
             corField.setText(carro.getCor());
             anoField.setText(carro.getAno());
             motorField.setText(carro.getMotor());
-            cambioField.setText(carro.getCambio());
-            //cambioComboBox.(String.valueOf(cambioComboBox.getSelectedItem()).(carro.getCambio()));
+            String.valueOf(cambioComboBox.getSelectedItem());
         }
     }
 
     private boolean validarCampos() {
         if (marcaField.getText().trim().isEmpty() || modeloField.getText().trim().isEmpty() || corField.getText().trim().isEmpty()
-            || anoField.getText().trim().isEmpty() || anoField.getText().trim().isEmpty() || motorField.getText().trim().isEmpty()
-            || cambioField.getText().trim().isEmpty()
+            || anoField.getText().trim().isEmpty() ||motorField.getText().trim().isEmpty()
             ) 
             {
             JOptionPane.showMessageDialog(
@@ -125,8 +120,7 @@ public class CarroForm extends JDialog {
             corField.getText().trim(),
             anoField.getText().trim(),
             motorField.getText().trim(),
-            cambioField.getText().trim()
-            //String.valueOf(cambioComboBox.getSelectedItem())
+            String.valueOf(cambioComboBox.getSelectedItem())
         );
     }
 
@@ -137,8 +131,7 @@ public class CarroForm extends JDialog {
             carro.setCor(corField.getText().trim());
             carro.setAno(anoField.getText().trim());
             carro.setMotor(motorField.getText().trim());
-            carro.setCambio(cambioField.getText().trim());
-            //carro.setCambio(String.valueOf(cambioComboBox.getSelectedItem()));
+            carro.setCambio(String.valueOf(cambioComboBox.getSelectedItem()));
         }
     }
 

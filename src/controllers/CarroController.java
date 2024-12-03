@@ -93,7 +93,7 @@ public class CarroController {
                         selectedId,
                         carroAtualizado.getMarca(),
                         carroAtualizado.getModelo(),
-                        carroAtualizado.getAno(),
+                        carroAtualizado.getCor(),
                         carroAtualizado.getAno(),
                         carroAtualizado.getMotor(),
                         carroAtualizado.getCambio()
